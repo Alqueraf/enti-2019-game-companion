@@ -7,13 +7,14 @@
     android:layout_margin="16dp"
     android:orientation="vertical">
     <!-- My Screen -->
-    <!--  Email  -->
+    <!--  Username  -->
     <EditText
+        android:id="@+id/usernameEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="8dp"
         android:gravity="center"
-        android:hint="Email"/>
+        android:hint="Username"/>
 
     <!--  Password  -->
     <EditText

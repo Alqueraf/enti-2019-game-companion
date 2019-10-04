@@ -1,5 +1,6 @@
 package com.alexqueudot.helloworld
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -14,7 +15,13 @@ class MainActivity : AppCompatActivity() {
 
         loginButton.setOnClickListener {
             // Code here
-            Toast.makeText(this, "Login pressed", Toast.LENGTH_LONG).show()
+//            Toast.makeText(this, "Login pressed", Toast.LENGTH_LONG).show()
+
+            val username = usernameEditText.text.toString()
+
+            val listActivityIntent = Intent(this, ListActivity::class.java)
+            listActivityIntent.putExtra("username", username)
+            startActivity(listActivityIntent)
         }
 
 

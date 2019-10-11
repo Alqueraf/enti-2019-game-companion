@@ -3,8 +3,12 @@ package com.alexqueudot.helloworld
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_bad_jokes.*
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import com.google.gson.Gson
+
+
 
 class BadJokesActivity : AppCompatActivity() {
 
@@ -25,16 +29,17 @@ class BadJokesActivity : AppCompatActivity() {
 
 
         // Create Json Utility
-        val json = Json(JsonConfiguration(strictMode = false))
+        val gson = Gson()
         // Parse json file to String
         val jsonString = application.assets.open("badjokes.json").bufferedReader()
             .use {
                 it.readText()
             }
         // Parse String to `JokeList` Model
-        val jokeListModel = json.parse(JokeList.serializer(), jsonString)
-        // Get List of jokes
+          val jokeListModel = gson.fromJson(jsonString, JokeList::class.java)
+//        // Get List of jokes
         val jokes = jokeListModel.jokes
+        println(jokes)
 
         println("yay")
 

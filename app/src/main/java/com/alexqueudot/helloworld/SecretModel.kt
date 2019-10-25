@@ -6,5 +6,6 @@ package com.alexqueudot.helloworld
 
 data class SecretModel(
     val title: String,
-    val description: String
+    val description: String,
+    val url: String
 )

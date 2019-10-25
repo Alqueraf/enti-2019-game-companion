@@ -33,6 +33,7 @@ class SecretsListAdapter : RecyclerView.Adapter<SecretsListAdapter.ViewHolder>()
         // Update Views
         holder.title.text = element.title
         holder.description.text = element.description
+        holder.imageView = element.url
     }
 
 

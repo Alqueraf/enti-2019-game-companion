@@ -12,5 +12,6 @@ data class JokeModel(
     var text: String?,
     var question: String? = null,
     var answer: String? = null,
-    var author: String? = null
+    var author: String? = null,
+    var imageUrl: String? = null
 )

@@ -6,8 +6,8 @@ import kotlinx.android.synthetic.main.activity_bad_jokes.*
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
-
 
 
 class BadJokesActivity : AppCompatActivity() {
@@ -20,14 +20,6 @@ class BadJokesActivity : AppCompatActivity() {
         val username = intent.getStringExtra("username")
         usernameTextView.text = username ?: "Unknown user"
 
-        // Set joke1
-        joke1.text = "What do you call a wizard who just ran a marathon? Ron Wheezly"
-
-        // Set joke2
-        joke2.text =
-            "My friend did not want to hang out because he had a pimple. I think that is a pore excuse"
-
-
         // Create Json Utility
         val gson = Gson()
         // Parse json file to String
@@ -36,10 +28,15 @@ class BadJokesActivity : AppCompatActivity() {
                 it.readText()
             }
         // Parse String to `JokeList` Model
-          val jokeListModel = gson.fromJson(jsonString, JokeList::class.java)
+        val jokeListModel = gson.fromJson(jsonString, JokeList::class.java)
 //        // Get List of jokes
         val jokes = jokeListModel.jokes
-        println(jokes)
+
+
+        // Configure Recyclerview
+        recyclerView.adapter = JokesAdapter(ArrayList(jokes.orEmpty()))
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
 
         println("yay")
 

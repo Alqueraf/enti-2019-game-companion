@@ -3,7 +3,10 @@ package com.alexqueudot.helloworld
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_secret.view.*
 
 /**
@@ -14,7 +17,7 @@ class SecretsListAdapter : RecyclerView.Adapter<SecretsListAdapter.ViewHolder>()
 
     var elements = ArrayList<SecretModel>()
 
-    // Create View
+    // CREATE View (layout > item_secret)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.item_secret, parent, false)
@@ -26,20 +29,21 @@ class SecretsListAdapter : RecyclerView.Adapter<SecretsListAdapter.ViewHolder>()
         return elements.count()
     }
 
-    // Recycle Visible Items
+    // UPDATE Item (holder: ViewHolder) at specific position (position: Int)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val element = elements[position]
 
         // Update Views
         holder.title.text = element.title
         holder.description.text = element.description
-        holder.imageView = element.url
+        Glide.with(holder.image.context).load(element.url).into(holder.image)
     }
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val title = itemView.title
-        val description = itemView.description
+        val title: TextView = itemView.title // item_secret.xml > @id
+        val description: TextView = itemView.description // item_secret.xml > @id
+        val image: ImageView = itemView.imageView // item_secret.xml > @id
     }
 
 }

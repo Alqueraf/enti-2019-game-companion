@@ -28,9 +28,9 @@ class BadJokesActivity : AppCompatActivity() {
                 it.readText()
             }
         // Parse String to `JokeList` Model
-        val jokeListModel = gson.fromJson(jsonString, JokeList::class.java)
+        val jokeListModel: JokeList = gson.fromJson(jsonString, JokeList::class.java)
 //        // Get List of jokes
-        val jokes = jokeListModel.jokes
+        val jokes: ArrayList<JokeModel>? = jokeListModel.jokes
 
 
         // Configure Recyclerview

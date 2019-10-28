@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_joke.view.*
 
 /**
@@ -22,7 +23,7 @@ class JokesAdapter(
 
     // Create item_joke View
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JokesAdapter.ViewHolder {
-        val item = LayoutInflater.from(parent.context).inflate(R.layout.item_joke, parent, false)
+        val item: View = LayoutInflater.from(parent.context).inflate(R.layout.item_joke, parent, false)
         return ViewHolder(item)
     }
 
@@ -32,11 +33,10 @@ class JokesAdapter(
 
         holder.question.text = joke.question
         holder.answer.text = joke.answer
-        // TODO: Find library to:
         // 1 - Download image from URL
         // 2 - Cache Image
         // 3 - Load image into ImageView
-        holder.imageView = joke.imageUrl
+        Glide.with(holder.imageView.context).load(list[position].imageUrl).into(holder.imageView)
     }
 
     class ViewHolder(item: View): RecyclerView.ViewHolder(item) {
